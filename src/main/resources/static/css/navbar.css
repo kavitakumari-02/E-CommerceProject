@@ -1,0 +1,45 @@
+/* Navbar Color */
+    .custom-navbar {
+      background: linear-gradient(90deg, #4e54c8, #8f94fb);
+    }
+
+    .custom-navbar .nav-link,
+    .custom-navbar .navbar-brand {
+      color: white !important;
+      font-weight: 500;
+    }
+
+    .custom-navbar .nav-link:hover {
+      color: #ffd700 !important;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      width: 260px;
+      height: 100vh;
+      background: #1e1e2f;
+      color: white;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+      border-radius: 8px;
+      margin-bottom: 5px;
+    }
+
+    .sidebar a:hover {
+      background: #34344e;
+      color: white;
+    }
+
+    /* Page Content */
+    .content {
+      margin-left: 240px;
+      padding: 20px;
+}
+	

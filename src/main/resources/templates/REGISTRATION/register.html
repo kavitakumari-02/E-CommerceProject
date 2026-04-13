@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+th:replace="ADMIN/adminNavbar.html :: layout(~{::section})">
+<head>
+	<section>
+    <meta charset="UTF-8">
+    <title>E-commerce Register</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<link th:href="@{/css/register.css}" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="main">
+
+    <!-- Left Side -->
+    <div class="left">
+        <h1>Welcome 🛒</h1>
+        <h3>Create your account and start shopping with amazing deals and offers.</h3>
+    </div>
+
+    <!-- Right Side -->
+    <div class="right">
+        <div class="form-box">
+			<div th:if="${message}"
+			th:class="'alert alert-' + ${message.msgType}" role="alert">
+			 <h2 class="text-center mb-0"
+			 th:text="${message.msg}"></h2>
+			</div>
+            <h2>Register</h2>
+			
+
+            <form th:action="@{/registerHandlerPage}" th:object="${user}" method="post">
+                <input type="text"
+			   th:field="*{name}"
+				 placeholder="Full Name">
+				 <p th:if="${#fields.hasErrors('name')}"
+				 th:errors="*{name}"
+				 class="text-danger"></p>
+				 
+                <input type="email"
+				th:field="*{email}"
+				 placeholder="Email">
+				 <p th:if="${#fields.hasErrors('email')}"
+				 th:errors="*{email}"
+				  class="text-danger"></p>
+				 
+                <input type="tel"
+				th:field="*{phoneNumber}" 
+				placeholder="Phone Number">
+				<p th:if="${#fields.hasErrors('phoneNumber')}"
+				th:errors="*{phoneNumber}"
+				 class="text-danger"></p>
+								 
+				
+                <input type="password" 
+				th:field="*{password}"
+				placeholder="Password">
+				<p th:if="${#fields.hasErrors('password')}"
+				th:errors="*{password}"
+				 class="text-danger"></p>
+				
+                <input type="password"
+				th:field="*{confirmPassword}" 
+				placeholder="Confirm Password">
+				<p th:if="${#fields.hasErrors('confirmPassword')}"
+				th:errors="*{confirmPassword}"
+				 class="text-danger"></p>
+
+                <button class="btn">Sign Up</button>
+            </form>
+
+            <div class="login">
+                Already have an account? <a href="/login">Login</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+</section>
+</body>
+</html>

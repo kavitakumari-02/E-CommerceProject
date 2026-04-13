@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+th:fragment="layout(content)">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>E-commerce</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link th:href="@{/css/navbar.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg custom-navbar">
+  <div class="container-fluid">
+
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">EliteShop</a>
+
+    <!-- Toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <!-- LEFT SIDE (Login/Register moved here) -->
+      <ul class="navbar-nav me-auto">
+		<li class="nav-item">
+		         <a class="nav-link" href="#">Category</a>
+		       </li>
+			   <li class="nav-item">
+			   		         <a class="nav-link" href="#"><i class="fa fa-user" style="color: red;"></i>profile</a>
+			   		       </li>
+      </ul>
+
+
+      <!-- RIGHT SIDE ICONS -->
+      <div class="d-flex align-items-center text-white">
+		<ul class="navbar-nav me-auto">
+			<li class="nav-item">
+		 <a class="nav-link" href="#">Home</a>
+		</li>
+		<li class="nav-item">
+		          <a class="nav-link" href="#">Register</a>
+		        </li>
+				<li class="nav-item">
+					  <a class="nav-link" href="#">Login</a>
+				 </li>
+		</ul>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <h4><i class="fa fa-store"></i> EliteShop</h4>
+  <a href="#"><i class="fa fa-home"></i> Home</a>
+  <a href="#"><i class="fa fa-tv"></i> Electronics</a>
+  <a href="#"><i class="fa fa-tshirt"></i> Fashion</a>
+  <a href="#"><i class="fa fa-couch"></i> Home & Living</a>
+  <a href="#"><i class="fa fa-shopping-basket"></i> Grocery</a>
+  <a href="#"><i class="fa fa-book"></i> Books</a>
+  <a href="#"><i class="fa fa-heart"></i> Wishlist</a>
+  <a href="#"><i class="fa fa-shopping-cart"></i> Cart</a>
+</div>
+
+<!-- Dynamic Content -->
+<div class="content" th:replace="${content}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
