@@ -37,6 +37,13 @@ private AddProductItemsRepository addProductItemsRepository;
 		return addProductItemsRepository.findAll();
 		 
 	}
+	@Override
+	public Optional<AddItems> findItemsById(int id) {
+		
+		 return addProductItemsRepository.findById(id);
+		 
+		
+	}
 	
 
 	

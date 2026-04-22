@@ -55,104 +55,20 @@ th:replace="USER/basenavbar :: layout(~{::section})">
   <!-- Products -->
   <div class="row mt-4 g-4">
 
-    <div class="col-md-3">
+    <div class="col-md-3" th:each="item : ${allAddItems}">
       <div class="product-card">
-        <img th:src="@{/image/sumsung.png}">
+        <img th:src="@{'/image/' + ${item.image}}" class="img-fluid mx-auto d-block" width="250">
         <div class="p-3 text-center">
-          <h6>Smartphone</h6>
-          <p class="price">₹25,000</p>
-         <button class="btn btn-success w-100">View Details</button>
+          <h5 th:text="${item.productName}"></h5>
+		  <p th:text="${item.description}"></p>
+          <h4 class="price" th:text="'₹' + ${item.price}"></h4>
+		  <a th:href="@{'/user/view-details/'  + ${item.id}}" class="btn btn-success w-40">View Details</a>
+         
         </div>
       </div>
     </div>
 
-    <div class="col-md-3">
-      <div class="product-card">
-        <img th:src="@{/image/fridge.png}">
-        <div class="p-3 text-center">
-          <h6>Fridge</h6>
-          <p class="price">₹5,0000</p>
-          <button class="btn btn-success w-100">View Details</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="product-card">
-        <img th:src="@{/image/HP.png}">
-        <div class="p-3 text-center">
-          <h6>Laptop</h6>
-          <p class="price">₹60,000</p>
-          <button class="btn btn-success w-100">View Details</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="product-card">
-		<img th:src="@{/image/puma.png}">
-        <div class="p-3 text-center">
-          <h6>Shose</h6>
-          <p class="price">₹4,000</p>
-          <button class="btn btn-success w-100">View Details</button>
-        </div>
-      </div>
-    </div>
-
-
-  <div class="col-md-3">
-       <div class="product-card">
-  	<img th:src="@{/image/sofa.png}">
-         <div class="p-3 text-center">
-           <h6>Sofa</h6>
-           <p class="price">₹40,000</p>
-           <button class="btn btn-success w-100">View Details</button>
-         </div>
-       </div>
-     </div>
-<div class="col-md-3">
-	       <div class="product-card">
-	         <img th:src="@{/image/Ac.png}">
-	         <div class="p-3 text-center">
-	           <h6>AC</h6>
-	           <p class="price">₹50,000</p>
-	          <button class="btn btn-success w-100">View Details</button>
-	         </div>
-	       </div>
-	     </div>
-		 
-		 <div class="col-md-3">
-		       <div class="product-card">
-		         <img th:src="@{/image/cycle.png}">
-		         <div class="p-3 text-center">
-		           <h6>Cycle</h6>
-		           <p class="price">₹12,000</p>
-		           <button class="btn btn-success w-100">View Details</button>
-		         </div>
-		       </div>
-		     </div>
-			 
-			 <div class="col-md-3">
-			 	       <div class="product-card">
-			 	         <img th:src="@{/image/coat.png}">
-			 	         <div class="p-3 text-center">
-			 	           <h6>Cloths</h6>
-			 	           <p class="price">₹6,000</p>
-			 	           <button class="btn btn-success w-100">View Details</button>
-			 	         </div>
-			 	       </div>
-			 	     </div>	 
-					 
-					 <div class="col-md-3">
-					 	       <div class="product-card">
-					 	         <img th:src="@{/image/table.png}">
-					 	         <div class="p-3 text-center">
-					 	           <h6>Table</h6>
-					 	           <p class="price">₹5,000</p>
-					 	           <button class="btn btn-success w-100">View Details</button>
-					 	         </div>
-					 	       </div>
-					 	     </div>
+    
       </div> 
 	  </section>
   <!-- Footer -->

@@ -47,10 +47,10 @@ th:fragment="layout(content)">
 		 <a class="nav-link" href="#">Home</a>
 		</li>
 		<li class="nav-item">
-		          <a class="nav-link" href="#">Register</a>
+		          <a class="nav-link" href="/register">Register</a>
 		        </li>
 				<li class="nav-item">
-					  <a class="nav-link" href="#">Login</a>
+					  <a class="nav-link" href="/login?logout">Logout</a>
 				 </li>
 		</ul>
       </div>
@@ -59,19 +59,21 @@ th:fragment="layout(content)">
   </div>
 </nav>
 
-<!-- Sidebar -->
 <div class="sidebar">
   <h4><i class="fa fa-store"></i> EliteShop</h4>
-  <a href="#"><i class="fa fa-home"></i> Home</a>
-  <a href="#"><i class="fa fa-tv"></i> Electronics</a>
-  <a href="#"><i class="fa fa-tshirt"></i> Fashion</a>
-  <a href="#"><i class="fa fa-couch"></i> Home & Living</a>
-  <a href="#"><i class="fa fa-shopping-basket"></i> Grocery</a>
-  <a href="#"><i class="fa fa-book"></i> Books</a>
-  <a href="#"><i class="fa fa-heart"></i> Wishlist</a>
-  <a href="#"><i class="fa fa-shopping-cart"></i> Cart</a>
-</div>
 
+  <a href="/user/homepage"><i class="fa fa-home"></i> Home</a>
+
+  <a href="#"><i class="fa fa-heart"></i> Wishlist</a>
+   <a href="#"><i class="fa fa-shopping-cart"></i> Cart</a>
+   
+  <a th:each="cat : ${category}" href="#" class="d-block">
+      <i class="fa fa-tag text-warning"></i>
+      <span th:text="${cat.category}"></span>
+  </a>
+
+ 
+</div>
 <!-- Dynamic Content -->
 <div class="content" th:replace="${content}"></div>
 
