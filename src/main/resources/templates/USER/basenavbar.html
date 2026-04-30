@@ -61,21 +61,6 @@ th:fragment="layout(content)">
   </div>
 </nav>
 
-<div class="sidebar">
-  <h4><i class="fa fa-store"></i> EliteShop</h4>
-
-  <a href="/user/homepage"><i class="fa fa-home"></i> Home</a>
-
-  <a href="#"><i class="fa fa-heart"></i> Wishlist</a>
-   
-  
-  <a th:each="cat : ${category}" href="#" class="d-block">
-      <i class="fa fa-tag text-warning"></i>
-      <span th:text="${cat.category}"></span>
-  </a>
-
- 
-</div>
 <!-- Dynamic Content -->
 <div class="content" th:replace="${content}"></div>
 

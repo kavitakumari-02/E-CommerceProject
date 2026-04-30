@@ -10,5 +10,5 @@ import com.e_commerce.project.items.additems.AddItems;
 
 public interface AddProductItemsRepository extends JpaRepository<AddItems, Integer>{
 List<AddItems> findAll();
-
+public List<AddItems>findByCategory(String category);
 }

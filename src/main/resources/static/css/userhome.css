@@ -2,7 +2,7 @@ body { font-family: 'Segoe UI', sans-serif; background:#f5f5f5; }
 
 
 /* Main */
-.main { margin-left: 250px; width: calc(100% -250px); padding: 20px; }
+.main { margin-left: 0; width: calc(100% -250px); padding: 0; }
 
 /* Top bar */
 .topbar {

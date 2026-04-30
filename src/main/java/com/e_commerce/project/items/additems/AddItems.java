@@ -1,11 +1,13 @@
 package com.e_commerce.project.items.additems;
 
+import com.e_commerce.project.category.model.Product;
 import com.e_commerce.project.registration.User;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class AddItems {
@@ -18,6 +20,8 @@ public class AddItems {
 	private int quantity;
 	private String image;
 	private String description;
+	@ManyToOne
+	private Product product;
 	public int getId() {
 		return id;
 	}
@@ -60,8 +64,15 @@ public class AddItems {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 	public AddItems(int id, String productName, double price, String category, int quantity, String image,
-			String description) {
+			String description,Product product) {
 		super();
 		this.id = id;
 		this.productName = productName;
@@ -70,6 +81,7 @@ public class AddItems {
 		this.quantity = quantity;
 		this.image = image;
 		this.description = description;
+		this.product=product;
 	}
 	public AddItems() {
 		super();

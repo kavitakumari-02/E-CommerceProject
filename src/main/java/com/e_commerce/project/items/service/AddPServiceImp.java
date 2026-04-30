@@ -85,7 +85,12 @@ private AddProductItemsRepository addProductItemsRepository;
 		}
 		return totalCount;
 		
-	}		
+	}
+	@Override
+	public List<AddItems> findByCategory(String category) {
+		 return  addProductItemsRepository.findByCategory(category); 
+		
+	}
 	
 	
 

@@ -12,28 +12,79 @@ th:replace="USER/basenavbar :: layout(~{::section})">
 
 <style>
 
-/* PAGE TITLE */
-.category-title {
+/* PAGE HEADER */
+.category-header {
   text-align: center;
-  margin: 30px 0;
+  margin: 0  0;
+}
+
+.category-header h2 {
   font-weight: 600;
+}
+
+.product-count {
+  color: gray;
+  font-size: 14px;
 }
 
 /* PRODUCT CARD */
 .product-card {
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  background: lightgoldenrodyellow;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: 0.3s;
+  height:  100%;
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
 }
 
+/* IMAGE */
+.product-img {
+  height: 200px;
+  object-fit: contain;
+  padding: 25px;
+}
+
+/* CONTENT */
+.product-body {
+  padding: 25px;
+  text-align: center;
+}
+
+.product-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.product-desc {
+  font-size: 13px;
+  color: gray;
+  height: 40px;
+  overflow: hidden;
+}
+
+/* PRICE */
 .price {
   color: green;
   font-weight: bold;
+  margin: 8px 0;
+}
+
+/* BUTTON */
+.btn-view {
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-size: 14px;
+}
+
+/* EMPTY STATE */
+.empty-box {
+  text-align: center;
+  padding: 50px;
+  color: gray;
 }
 
 </style>
@@ -41,32 +92,39 @@ th:replace="USER/basenavbar :: layout(~{::section})">
 
 <body>
 
-<div class="container">
+<div class="container mt-5">
 
-  <!-- CATEGORY NAME -->
-  <h3 class="category-title" th:text="${categoryName}">Category</h3>
-
+ 
   <!-- PRODUCTS -->
-  <div class="row g-4">
+  <div class="row g-4" th:if="${categoryItems != null and !categoryItems.isEmpty()}">
 
-    <div class="col-md-3" th:each="item : ${products}">
-      <div class="product-card p-3 text-center">
+    <div class="col-lg-4 col-md-4 col-sm-7" th:each="item : ${categoryItems}">
+      
+      <div class="product-card">
 
-        <img th:src="@{'/image/' + ${item.image}}" class="img-fluid mb-2" height="200">
+        <img th:src="@{'/image/' + ${item.image}}" class="w-200 product-img">
 
-        <h5 th:text="${item.productName}"></h5>
-        <p th:text="${item.description}"></p>
+        <div class="product-body">
+          <h6 class="product-title" th:text="${item.productName}"></h6>
+          <p class="product-desc" th:text="${item.description}"></p>
 
-        <h5 class="price" th:text="'₹' + ${item.price}"></h5>
+          <div class="price" th:text="'₹' + ${item.price}"></div>
 
-        <a th:href="@{'/user/view-details/' + ${item.id}}" 
-           class="btn btn-success btn-sm mt-2">
-           View Details
-        </a>
+          <a th:href="@{'/user/view-details/' + ${item.id}}" 
+             class="btn btn-success btn-view">
+             View Details
+          </a>
+        </div>
 
       </div>
+
     </div>
 
+  </div>
+
+  <!-- NO PRODUCTS -->
+  <div class="empty-box" th:if="${categoryItems == null or categoryItems.isEmpty()}">
+    <h5>No products found in this category 😔</h5>
   </div>
 
 </div>

@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import com.e_commerce.project.ECommerceProjectApplication;
 import com.e_commerce.project.category.model.Product;
+import com.e_commerce.project.category.repository.ProductRepository;
 import com.e_commerce.project.category.service.ServiceHandlerImp;
 import com.e_commerce.project.items.additems.AddItems;
 import com.e_commerce.project.items.service.AddPServiceImp;
@@ -36,13 +37,16 @@ import jakarta.persistence.Id;
 @RequestMapping("/admin")
 public class ProductController {
 
+    private final ProductRepository productRepository;
+
     private final ECommerceProjectApplication ECommerceProjectApplication;
 	@Autowired
 	private ServiceHandlerImp serviceHandlerImp;
 	@Autowired
     private AddPServiceImp addPServiceImp;
-    ProductController(ECommerceProjectApplication ECommerceProjectApplication) {
+    ProductController(ECommerceProjectApplication ECommerceProjectApplication, ProductRepository productRepository) {
         this.ECommerceProjectApplication = ECommerceProjectApplication;
+        this.productRepository = productRepository;
     }
 	
     @GetMapping("/dashboard")
@@ -68,7 +72,7 @@ public class ProductController {
             @RequestParam("quantity") int quantity,
             @RequestParam("description") String description,
             @RequestParam("image") MultipartFile file) throws IOException {
-             
+    	
     	
         // Create object manually
         AddItems aItems = new AddItems();
@@ -82,6 +86,7 @@ public class ProductController {
         @Nullable
 		String Filename = file.getOriginalFilename();
         aItems.setImage(Filename);
+        
       addPServiceImp.saveAddItems(aItems);
         return "redirect:/admin/add-product";
     }

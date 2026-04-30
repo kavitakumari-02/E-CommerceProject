@@ -2,6 +2,8 @@ package com.e_commerce.project.category.model;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.e_commerce.project.items.additems.AddItems;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,7 +19,6 @@ private String category;
 private String fileImage;
 private boolean isActive;
 private String description;
-
 
 public int getId() {
 	return id;

@@ -49,6 +49,7 @@ public class ServiceHandlerImp implements ServiceHandler{
 		
 		return productRepository.findById(id);
 	 }
+	 
 	public List<Product>getByCategorys(String category){
 		
 		return productRepository.findByCategory(category);

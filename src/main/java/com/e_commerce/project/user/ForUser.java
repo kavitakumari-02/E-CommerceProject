@@ -71,7 +71,13 @@ User user = userRepository.findByEmail(email);
 addPServiceImp.AddToCart(user.getId(), id);
 	return "redirect:/view-details/"+id;
 }
-
+@GetMapping("/explore-category/{category}")
+public String categoryExplore(@PathVariable("category")String category,Model model) {
+	List<AddItems> categoryItems = addPServiceImp.findByCategory(category);
+	
+	model.addAttribute("categoryItems", categoryItems);
+	return "USER/categoryExplore";
+}
 
 
 }
