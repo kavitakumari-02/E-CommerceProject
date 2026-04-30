@@ -126,9 +126,7 @@ public class ProductController {
     if(file.isEmpty()) {
     	product.setFileImage("Default.png");
     }
-    
-    	
-    	@Nullable
+   
 		String originalFilename = file.getOriginalFilename();
     	product.setFileImage(originalFilename);
    

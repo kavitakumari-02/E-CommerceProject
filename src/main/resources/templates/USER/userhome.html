@@ -1,39 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" 
 th:replace="USER/basenavbar :: layout(~{::section})">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EliteShop UI</title>
+
 <section>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link th:href="@{/css/userhome.css}" rel="stylesheet">
+
+
 </head>
 
-<body>
-<!-- Main -->
+<section>
+
 <div class="main">
 
-	<!-- Top Bar -->
-	<div class="topbar d-flex align-items-center justify-content-between p-3 bg-white shadow-sm rounded">
+  <!-- Top Bar -->
+  <div class="topbar d-flex align-items-center justify-content-between p-3 bg-white shadow-sm rounded">
 
-	  <!-- Left -->
-	  <div>
-	    <h5 class="mb-0 fw-semibold">Search Here 👋</h5>
-	  </div>
+    <div>
+      <h5 class="mb-0 fw-semibold">Search Here 👋</h5>
+    </div>
 
-	  <!-- Center Search (FIXED) -->
-	  <div class="search-box mx-auto" style="max-width: 500px; width: 120%;">
-	    <div class="input-group">
-	      <input type="text" class="form-control rounded-start-pill" placeholder="Search for products...">
-	      <button class="btn btn-primary rounded-end-pill px-8">
-	        <i class="fa fa-search"></i>
-	      </button>
-	    </div>
-	  </div>
+    <div class="search-box mx-auto" style="max-width: 500px; width: 120%;">
+      <div class="input-group">
+        <input type="text" class="form-control rounded-start-pill" placeholder="Search for products...">
+        <button class="btn btn-primary rounded-end-pill px-4">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+    </div>
 
-	</div>
+  </div>
 
   <!-- Hero -->
   <div class="hero">
@@ -44,12 +46,39 @@ th:replace="USER/basenavbar :: layout(~{::section})">
     </div>
   </div>
 
+  <!-- ✅ CATEGORY (MIDDLE SECTION) -->
+  <div class="category-wrapper mt-4">
+
+    <h4 class="text-center mb-4">Category</h4>
+
+    <div class="d-flex flex-wrap gap-3 mt-3">
+		 <a th:each="cat : ${category}"
+        th:href="@{'/user/category/' + ${cat.id}}"
+		class="text-decoration-none text-dark text-center">
+          <img th:src="@{'/image/' + ${cat.fileImage}}"
+		  style="width: 200px; height: 200px; object-fit: contain; border-radius: 50%; background:white;">
+		  
+          <p th:text="${cat.category}"></p>
+        </a>
+      </div>
+
+    </div>
+  
+
   <!-- Features -->
   <div class="row mt-4">
-    <div class="col-md-3"><div class="feature-box"><i class="fa fa-truck"></i><p>Free Delivery</p></div></div>
-    <div class="col-md-3"><div class="feature-box"><i class="fa fa-undo"></i><p>Easy Returns</p></div></div>
-    <div class="col-md-3"><div class="feature-box"><i class="fa fa-lock"></i><p>Secure Payment</p></div></div>
-    <div class="col-md-3"><div class="feature-box"><i class="fa fa-headphones"></i><p>24/7 Support</p></div></div>
+    <div class="col-md-3">
+      <div class="feature-box"><i class="fa fa-truck"></i><p>Free Delivery</p></div>
+    </div>
+    <div class="col-md-3">
+      <div class="feature-box"><i class="fa fa-undo"></i><p>Easy Returns</p></div>
+    </div>
+    <div class="col-md-3">
+      <div class="feature-box"><i class="fa fa-lock"></i><p>Secure Payment</p></div>
+    </div>
+    <div class="col-md-3">
+      <div class="feature-box"><i class="fa fa-headphones"></i><p>24/7 Support</p></div>
+    </div>
   </div>
 
   <!-- Products -->
@@ -60,24 +89,23 @@ th:replace="USER/basenavbar :: layout(~{::section})">
         <img th:src="@{'/image/' + ${item.image}}" class="img-fluid mx-auto d-block" width="250">
         <div class="p-3 text-center">
           <h5 th:text="${item.productName}"></h5>
-		  <p th:text="${item.description}"></p>
+          <p th:text="${item.description}"></p>
           <h4 class="price" th:text="'₹' + ${item.price}"></h4>
-		  <a th:href="@{'/user/view-details/'  + ${item.id}}" class="btn btn-success w-40">View Details</a>
-         
+          <a th:href="@{'/user/view-details/' + ${item.id}}" class="btn btn-success">View Details</a>
         </div>
       </div>
     </div>
 
-    
-      </div> 
-	  </section>
+  </div>
+
   <!-- Footer -->
-  <footer>
+  <footer class="mt-5 text-center">
     <p>© 2026 EliteShop | All Rights Reserved</p>
   </footer>
 
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</section>
 </body>
 </html>

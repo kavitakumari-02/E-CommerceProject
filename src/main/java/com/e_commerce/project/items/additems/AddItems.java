@@ -1,5 +1,7 @@
 package com.e_commerce.project.items.additems;
 
+import com.e_commerce.project.registration.User;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

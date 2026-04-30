@@ -82,7 +82,7 @@ th:replace="USER/basenavbar :: layout(~{::section})">
 
             <!-- Buttons -->
             <div class="d-flex justify-content-between">
-                <a th:href="#" class="btn btn-warning btn-custom">
+                <a th:href="@{/user/add-cart/{id}(id=${product.id})}" class="btn btn-warning btn-custom">
                     <i class="fa fa-shopping-cart"></i> Add to Cart
                 </a>
 

@@ -43,9 +43,11 @@ th:fragment="layout(content)">
       <!-- RIGHT SIDE ICONS -->
       <div class="d-flex align-items-center text-white">
 		<ul class="navbar-nav me-auto">
-			<li class="nav-item">
-		 <a class="nav-link" href="#">Home</a>
-		</li>
+			
+				<li class="nav-item">
+					<a class="nav-link" href="#"><i class="fa fa-shopping-cart"></i> Cart
+									(<span th:text="${cartCount}" style="color: red;"></span>)</a>	   
+						        </li>
 		<li class="nav-item">
 		          <a class="nav-link" href="/register">Register</a>
 		        </li>
@@ -65,8 +67,8 @@ th:fragment="layout(content)">
   <a href="/user/homepage"><i class="fa fa-home"></i> Home</a>
 
   <a href="#"><i class="fa fa-heart"></i> Wishlist</a>
-   <a href="#"><i class="fa fa-shopping-cart"></i> Cart</a>
    
+  
   <a th:each="cat : ${category}" href="#" class="d-block">
       <i class="fa fa-tag text-warning"></i>
       <span th:text="${cat.category}"></span>
