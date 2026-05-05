@@ -5,86 +5,68 @@ th:replace="USER/basenavbar :: layout(~{::section})">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Category Products</title>
+<title>Products</title>
 
 <section>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
 
-/* PAGE HEADER */
-.category-header {
-  text-align: center;
-  margin: 0  0;
+/* BACKGROUND */
+body {
+  background: #eef1f5;
 }
 
-.category-header h2 {
-  font-weight: 600;
+/* SIDEBAR */
+.category-sidebar {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
 }
 
-.product-count {
-  color: gray;
-  font-size: 14px;
+/* CATEGORY ITEMS */
+.category-sidebar .list-group-item {
+  border: 1px solid #ddd;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  font-size: 20px;
+}
+
+.category-sidebar .active {
+  background: #0d6efd;
+  color: #fff;
 }
 
 /* PRODUCT CARD */
 .product-card {
-  border-radius: 12px;
-  background: lightgoldenrodyellow;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #ddd;
   transition: 0.3s;
-  height:  100%;
 }
 
 .product-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
 }
 
 /* IMAGE */
 .product-img {
-  height: 200px;
+  height: 150px;
   object-fit: contain;
-  padding: 25px;
-}
-
-/* CONTENT */
-.product-body {
-  padding: 25px;
-  text-align: center;
-}
-
-.product-title {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.product-desc {
-  font-size: 13px;
-  color: gray;
-  height: 40px;
-  overflow: hidden;
 }
 
 /* PRICE */
 .price {
-  color: green;
   font-weight: bold;
-  margin: 8px 0;
 }
 
-/* BUTTON */
-.btn-view {
-  border-radius: 20px;
-  padding: 5px 15px;
-  font-size: 14px;
-}
-
-/* EMPTY STATE */
-.empty-box {
+/* TITLE */
+.page-title {
   text-align: center;
-  padding: 50px;
-  color: gray;
+  margin-bottom: 20px;
 }
 
 </style>
@@ -92,39 +74,67 @@ th:replace="USER/basenavbar :: layout(~{::section})">
 
 <body>
 
-<div class="container mt-5">
+<div class="container-fluid mt-4">
 
- 
-  <!-- PRODUCTS -->
-  <div class="row g-4" th:if="${categoryItems != null and !categoryItems.isEmpty()}">
+  <div class="row">
 
-    <div class="col-lg-4 col-md-4 col-sm-7" th:each="item : ${categoryItems}">
-      
-      <div class="product-card">
+    <!-- ✅ LEFT CATEGORY -->
+    <div class="col-md-2">
+      <div class="category-sidebar">
 
-        <img th:src="@{'/image/' + ${item.image}}" class="w-200 product-img">
+        <h5 class="text-center">Categories</h5>
 
-        <div class="product-body">
-          <h6 class="product-title" th:text="${item.productName}"></h6>
-          <p class="product-desc" th:text="${item.description}"></p>
+        <div class="list-group">
 
-          <div class="price" th:text="'₹' + ${item.price}"></div>
-
-          <a th:href="@{'/user/view-details/' + ${item.id}}" 
-             class="btn btn-success btn-view">
-             View Details
+          <!-- CATEGORY LIST ONLY (NO NEED TO CLICK ALL) -->
+          <a th:each="cat : ${allCategory}"
+             th:href="@{'/user/explore-category/' + ${cat.category}}"
+             th:text="${cat.category}"
+             class="list-group-item">
+			 <p th:text="${cat.category}"></p>
           </a>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ✅ RIGHT PRODUCTS -->
+    <div class="col-md-10">
+
+      <h4 class="page-title">All Products</h4>
+
+      <div class="row g-4">
+
+        <div class="col-md-3" th:each="item : ${categoryItems}">
+          
+          <div class="product-card">
+
+            <img th:src="@{'/image/' + ${item.image}}" class="w-100 product-img">
+
+            <h6 th:text="${item.productName}"></h6>
+
+            <div class="price" th:text="'₹ ' + ${item.price}"></div>
+
+            <a th:href="@{'/user/view-details/' + ${item.id}}" 
+               class="btn btn-primary btn-sm mt-2">
+               View Details
+            </a>
+
+          </div>
+
         </div>
 
       </div>
 
+      <!-- EMPTY -->
+      <div class="text-center mt-5"
+           th:if="${categoryItems == null or categoryItems.isEmpty()}">
+        <h5>No products found 😔</h5>
+      </div>
+
     </div>
 
-  </div>
-
-  <!-- NO PRODUCTS -->
-  <div class="empty-box" th:if="${categoryItems == null or categoryItems.isEmpty()}">
-    <h5>No products found in this category 😔</h5>
   </div>
 
 </div>

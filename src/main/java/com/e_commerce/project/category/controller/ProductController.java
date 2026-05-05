@@ -73,20 +73,26 @@ public class ProductController {
             @RequestParam("description") String description,
             @RequestParam("image") MultipartFile file) throws IOException {
     	
-    	
+    		
         // Create object manually
         AddItems aItems = new AddItems();
 
+     if(file.isEmpty()) {
+    	aItems.setImage("Default.png");	
+    	}
+     else {
         aItems.setProductName(productName);
         aItems.setPrice(price);
         aItems.setCategory(category);
         aItems.setQuantity(quantity);
         aItems.setDescription(description);
         
-        @Nullable
-		String Filename = file.getOriginalFilename();
-        aItems.setImage(Filename);
-        
+        String dirPath="C:\\Users\\hp\\Documents\\workspace-spring-tools-for-eclipse-5.0.1.RELEASE\\E-CommerceProject\\src\\main\\resources\\static\\image/";
+		String filename = file.getOriginalFilename();
+       Path path=Paths.get(dirPath+filename);
+       Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+        aItems.setImage(filename);
+     }
       addPServiceImp.saveAddItems(aItems);
         return "redirect:/admin/add-product";
     }
@@ -131,8 +137,10 @@ public class ProductController {
     if(file.isEmpty()) {
     	product.setFileImage("Default.png");
     }
-   
+   String dirPath="C:\\Users\\hp\\Documents\\workspace-spring-tools-for-eclipse-5.0.1.RELEASE\\E-CommerceProject\\src\\main\\resources\\static\\image/";
 		String originalFilename = file.getOriginalFilename();
+		Path path=Paths.get(dirPath+originalFilename);
+		Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
     	product.setFileImage(originalFilename);
    
     }
